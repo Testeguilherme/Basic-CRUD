@@ -3,8 +3,18 @@ package com.api.vendas.dao;
 
 import com.api.vendas.entity.Student;
 
+import java.util.List;
+
 public interface StudentDAO {
 
-    void save(Student student);
+    public void save(Student student);
+
+    public Student findById(Integer id);
+
+    public List<Student> findAll();
+
+    public List<Student> findByLastName(String theLastName);
+
+
 
 }

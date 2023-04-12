@@ -1,12 +1,13 @@
 package com.api.vendas;
 
 import com.api.vendas.dao.StudentDAO;
-import com.api.vendas.dao.StudentDAOImpl;
 import com.api.vendas.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class VendasApplication {
@@ -19,8 +20,21 @@ public class VendasApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner -> {
 			//createStudent(studentDAO);
-			createMultipleStudents(studentDAO);
+			//createMultipleStudents(studentDAO);
+			//readStudent(studentDAO);
+			queryForStudents(studentDAO);
 		};
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		List<Student> theStudents = studentDAO.findAll();
+		for(Student itens : theStudents){
+			System.out.println(itens);
+		}
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		System.out.println(studentDAO.findById(2));
 	}
 
 	private void createMultipleStudents(StudentDAO studentDAO) {
@@ -34,7 +48,6 @@ public class VendasApplication {
 		studentDAO.save(tempStudent1);
 		studentDAO.save(tempStudent2);
 		studentDAO.save(tempStudent3);
-
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
@@ -45,8 +58,6 @@ public class VendasApplication {
 		studentDAO.save(tempStudent);
 
 		System.out.println("Saved student. Generated id: " + tempStudent.getId());
-
-
 	}
 
 }
