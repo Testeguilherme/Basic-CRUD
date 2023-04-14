@@ -22,8 +22,31 @@ public class VendasApplication {
 			//createStudent(studentDAO);
 			//createMultipleStudents(studentDAO);
 			//readStudent(studentDAO);
-			queryForStudents(studentDAO);
+			//queryForStudents(studentDAO);
+			//queryForStudentsByLastName(studentDAO);
+			//updateStudent(studentDAO);
+			deleteStudent(studentDAO);
 		};
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		Integer studentId = 5;
+		studentDAO.deleteStudent(studentId);
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		int studentId = 2;
+		Student theStudent = studentDAO.findById(studentId);
+		theStudent.setFirstName("Scooby");
+		studentDAO.update(theStudent);
+		System.out.println("Updated student: " + theStudent);
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		List<Student> list = studentDAO.findByLastName("Frias");
+		for(Student item : list){
+			System.out.println(item);
+		}
 	}
 
 	private void queryForStudents(StudentDAO studentDAO) {
@@ -52,7 +75,7 @@ public class VendasApplication {
 
 	private void createStudent(StudentDAO studentDAO) {
 		System.out.println("Creating new student object ...");
-		Student tempStudent = new Student("Guilherme", "Frias", "Gui@hotmail.com");
+		Student tempStudent = new Student("Joana", "Frias", "Joana@gmail.com");
 
 		System.out.println("Saving the student ...");
 		studentDAO.save(tempStudent);
