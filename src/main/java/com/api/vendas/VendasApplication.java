@@ -25,8 +25,15 @@ public class VendasApplication {
 			//queryForStudents(studentDAO);
 			//queryForStudentsByLastName(studentDAO);
 			//updateStudent(studentDAO);
-			deleteStudent(studentDAO);
+			//deleteStudent(studentDAO);
+			//deleteAllStudents(studentDAO);
 		};
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("Deleting all students from DB");
+		int numRows = studentDAO.deleteAll();
+		System.out.println("Rows: " + numRows);
 	}
 
 	private void deleteStudent(StudentDAO studentDAO) {
@@ -66,11 +73,13 @@ public class VendasApplication {
 		Student tempStudent1 = new Student("Shaolin", "Matador de Porco", "shaolas@outlook.com");
 		Student tempStudent2 = new Student("Ronaldinho", "Gaucho", "ronaldin@gmail.com");
 		Student tempStudent3 = new Student("Flavin", "do Pneu", "flavin@doPneu.com");
+		Student tempStudent4 = new Student("Guilherme", "Frias", "gui@gmail.com");
 
 		System.out.println("Saving the student ...");
 		studentDAO.save(tempStudent1);
 		studentDAO.save(tempStudent2);
 		studentDAO.save(tempStudent3);
+		studentDAO.save(tempStudent4);
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
